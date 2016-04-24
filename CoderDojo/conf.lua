@@ -1,10 +1,8 @@
--- Configuration
+-- Configuratie
 function love.conf(t)
-	t.title = "Scrolling Shooter Tutorial" -- The title of the window the game is in (string)
-	t.version = "0.9.1"         -- The LÃ–VE version this game was made for (string)
-	t.window.width = 480        -- we want our game to be long and thin.
-	t.window.height = 800
+	t.title = "Shooter"    -- De titel van de game
+	t.version = "0.10.1"   -- De Löve versie waarvoor deze game gemaakt is
+	t.window.width = 480   -- Breedte van de window waarin de game speelt
+	t.window.height = 650  -- Hoogte van de window waarin de game speelt
 
-	-- For Windows debugging
-	t.console = true
 end
