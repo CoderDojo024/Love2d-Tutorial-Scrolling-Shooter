@@ -43,6 +43,15 @@ end
 
 function love.update(dt)
 
+  -- als de o van opnieuw wordt ingedrukt
+  if love.keyboard.isDown('o') then
+    -- wordt het spel opnieuw gestart
+    kogels = {}
+    vijanden = {}
+    score = 0
+    spelIsAfgelopen = false
+  end
+  
   -- als de spatiebalk wordt ingedrukt
   if love.keyboard.isDown('space') then
     -- schiet dan
