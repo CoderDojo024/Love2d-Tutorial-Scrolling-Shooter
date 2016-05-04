@@ -45,3 +45,20 @@ function maakNieuweKogel(kogels, speler)
     nieuweKogelTimer = nieuweKogelTimer - 1
   end
 end
+
+function isGeraakt(x1, y1, w1, h1, x2, y2, w2, h2)
+  return x1 < x2+w2 and
+         x2 < x1+w1 and
+         y1 < y2+h2 and
+         y2 < y1+h1
+ end
+
+function spelerHeeftVijandGeraakt()
+  heeftGeraakt = false
+  for index, vijand in ipairs(vijanden) do
+    if isGeraakt(speler.x, speler.y, speler.plaatje:getWidth(), speler.plaatje:getHeight(), vijand.x, vijand.y, vijand.plaatje:getWidth(), vijand.plaatje:getHeight()) then
+        heeftGeraakt = true
+    end
+  end
+  return heeftGeraakt
+end

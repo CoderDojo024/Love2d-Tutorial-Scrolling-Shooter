@@ -4,6 +4,8 @@ stapGrootte = 2
 spelerY = 560
 spelerX = 200
 
+spelIsAfgelopen = false
+
 -- variabelen om eigenschappen van de speler in op te slaan
 speler = { x = spelerX, y = spelerY, plaatje = nil }
 -- lijst om vijanden in op te slaan
@@ -21,8 +23,11 @@ function love.load(arg)
 end
 
 function love.draw(dt)
-  -- teken het plaatje op het scherm
-  love.graphics.draw(speler.plaatje, speler.x, speler.y)
+  -- als het spel nog niet is afgelopen
+  if spelIsAfgelopen == false then
+    -- teken het plaatje op het scherm
+    love.graphics.draw(speler.plaatje, speler.x, speler.y)
+  end
   -- teken de vijanden in de lijst
   tekenVijanden(vijanden)
   -- teken de kogels in de lijst
@@ -49,7 +54,6 @@ function love.update(dt)
       table.remove(kogels, index)
     end
   end
-  
 
   maakNieuweVijand(vijanden)  
 
@@ -66,6 +70,10 @@ function love.update(dt)
     end
   end
   
+  if spelerHeeftVijandGeraakt() then
+    spelIsAfgelopen = true
+  end
+
   -- als pijltje naar links ingedrukt
   if love.keyboard.isDown('left') then
     -- en de linker rand is nog niet bereikt
