@@ -37,9 +37,15 @@ function love.update(dt)
     maakNieuweKogel(kogels, speler)
   end
   
+  -- voor elke kogel in de lijst
   for index, kogel in ipairs(kogels) do
+    
+    -- beweeg de kogel naar boven
     kogel.y = kogel.y - (2 * stapGrootte)
+    
+    -- als de kogel de bovenrand heeft bereikt
     if kogel.y < -20 then
+      -- verwijder het uit de lijst
       table.remove(kogels, index)
     end
   end
@@ -55,7 +61,7 @@ function love.update(dt)
     
     -- als de vijand de onderrand heeft bereikt
     if vijand.y > yOnderRand() then
-      -- verwijder de vijand als ie buiten het venster verdwenen
+      -- verwijder de vijand als ie buiten het venster is verdwenen
       table.remove(vijanden, index)
     end
   end
@@ -64,7 +70,7 @@ function love.update(dt)
   if love.keyboard.isDown('left') then
     -- en de linker rand is nog niet bereikt
     if speler.x > 0 then
-    -- dan doe een stap naar links
+      -- dan doe een stap naar links
       speler.x = speler.x - stapGrootte
     end
 
