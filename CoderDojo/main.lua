@@ -5,6 +5,7 @@ spelerY = 560
 spelerX = 200
 
 spelIsAfgelopen = false
+score = 0
 
 -- variabelen om eigenschappen van de speler in op te slaan
 speler = { x = spelerX, y = spelerY, plaatje = nil }
@@ -32,6 +33,12 @@ function love.draw(dt)
   tekenVijanden(vijanden)
   -- teken de kogels in de lijst
   tekenKogels(kogels)
+
+  -- zet de tekstkleur op wit
+  love.graphics.setColor(255, 255, 255)
+  -- en druk de score af
+  love.graphics.print("SCORE: " .. tostring(score), 400, 10)
+  
 end
 
 function love.update(dt)
@@ -70,8 +77,16 @@ function love.update(dt)
     end
   end
   
+  -- als de speler een vijand geraakt heeft
   if spelerHeeftVijandGeraakt() then
+    -- is het spel afgelopen
     spelIsAfgelopen = true
+  end
+  
+  -- als de kogel een vijand geraakt heeft
+  if kogelHeeftVijandGeraakt() then
+    -- heb je een punt gescoord
+    score = score + 1
   end
 
   -- als pijltje naar links ingedrukt

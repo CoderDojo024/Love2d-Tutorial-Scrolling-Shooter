@@ -62,3 +62,17 @@ function spelerHeeftVijandGeraakt()
   end
   return heeftGeraakt
 end
+
+function kogelHeeftVijandGeraakt()
+  heeftGeraakt = false
+  for vijandIndex, vijand in ipairs(vijanden) do
+    for kogelIndex, kogel in ipairs(kogels) do
+      if isGeraakt(kogel.x, kogel.y, kogel.plaatje:getWidth(), kogel.plaatje:getHeight(), vijand.x, vijand.y, vijand.plaatje:getWidth(), vijand.plaatje:getHeight()) then
+        heeftGeraakt = true
+        table.remove(vijanden, vijandIndex)
+        table.remove(kogels, kogelIndex)
+      end
+    end
+  end
+  return heeftGeraakt
+end
